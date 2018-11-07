@@ -1,15 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import { LoginService } from "./services/login.service";
+import { AuthService } from "./services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.styl'],
-  providers: [LoginService]
+  providers: [AuthService]
 })
 export class AppComponent implements OnInit {
   title = 'TestApp';
   isLogin: boolean = false;
+
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
@@ -20,4 +23,10 @@ export class AppComponent implements OnInit {
   getLogin() {
     return localStorage.getItem("currentUser");
   }
+  logout() {
+    // clear token remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/']);
+  }
+
 }

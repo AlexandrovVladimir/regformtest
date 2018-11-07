@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Router, Route} from "@angular/router";
-import {LoginService} from "../../services/login.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-registre',
@@ -16,7 +16,7 @@ export class RegistreComponent implements OnInit {
   registreErrors: String;
 
 
-  constructor( private formBuilder: FormBuilder, private loginService: LoginService, private router: Router ) { }
+  constructor(private formBuilder: FormBuilder, private loginService: AuthService, private router: Router ) { }
 
   ngOnInit() {
     this.registreForm = this.formBuilder.group({

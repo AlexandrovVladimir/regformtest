@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/users.model';
 import {Routes, RouterModule} from '@angular/router';
 import { Router, ActivatedRoute } from "@angular/router";
@@ -10,7 +10,7 @@ import { Observable } from "rxjs";
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.styl'],
-  providers: [ LoginService ]
+  providers: [ AuthService ]
 })
 export class LoginComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   loading = false;
 
-  constructor( private formBuilder: FormBuilder, private loginService: LoginService,
+  constructor( private formBuilder: FormBuilder, private loginService: AuthService,
                private route: ActivatedRoute, private router: Router) {
   }
 
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(values.username,values.password)
       .subscribe(
         result => {
-          console.log('data', result);
+          console.log('loginService data', result);
           this.router.navigate(['/']);
         },
         error => {

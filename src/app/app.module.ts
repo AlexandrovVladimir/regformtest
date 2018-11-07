@@ -11,6 +11,7 @@ import { RegistreComponent } from './components/registre/registre.component';
 
 import { ReactiveFormsModule } from "@angular/forms";
 import { Router } from '@angular/router';
+import { NoticesComponent } from './components/notices/notices.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
     LoginComponent,
     HomeComponentComponent,
     RegistreComponent,
+    NoticesComponent,
   ],
   imports: [
     BrowserModule,

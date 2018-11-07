@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 
 @Injectable()
-export class LoginService {
+export class AuthService {
   configUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient){ }
@@ -20,9 +20,7 @@ export class LoginService {
 
     return this.http.get<any>(url)
       .pipe(map(result => {
-        // login successful if there's a jwt token in the response
         if (result) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(result));
           console.log('login good', result);
         } else {
