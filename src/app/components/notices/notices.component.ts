@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NoticesService } from "../../services/notices.service";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
+import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators }  from '@angular/forms';
 
 @Component({
   selector: 'app-notices',
@@ -12,32 +13,57 @@ export class NoticesComponent implements OnInit {
   notesHtml: string;
   currentUser: string;
   currentId: string;
+  // noticesForm: FormGroup;
+  submitted = false;
+  // noteEditStatus = false;
 
-  constructor(private currentNotice: NoticesService, private route: ActivatedRoute) { }
+  constructor(private currentNotice: NoticesService) { }
 
   ngOnInit() {
-    // this.allNotes.getAllNotices()
-    //   .subscribe(
-    //   result => {
-    //     this.notesHtml = result;
-    //   },
-    //   error => {
-    //     console.log('allNotes: ', error);
-    //   });
-
-
-    // this.currentId = JSON.parse(this.currentUser )[0]._id;
     this.currentUser = localStorage.getItem('currentUser');
     this.currentId = JSON.parse(this.currentUser )[0]._id;
+    this.getNotices();
+  }
 
-    console.log('1111111', JSON.parse(this.currentUser )[0]._id);
 
+  getNotices() {
     this.currentNotice.getCurrentNotice(JSON.parse(this.currentUser)[0]._id)
       .subscribe(result => {
         this.notesHtml = result;
+        // console.log('getNotices', this.notesHtml);
       }, error => {
         console.log('getCurrentNotice: ', error);
-      })
+      });
   }
+
+  deleteNotice(id: string) {
+    console.log(this.notesHtml);
+    // this.currentUser = localStorage.getItem('currentUser');
+    // console.log(this.currentUser);
+    // this.currentId = JSON.parse(this.currentUser )[0]._id;
+
+    // this.currentNotice.deleteNotice(id)
+    //   .subscribe(result => {
+    //     this.getNotices();
+    //     console.log(result);
+    //   }, error => {
+    //     this.notesHtml = error;
+    //     console.log('deleteNotice: ', error);
+    //   });
+  }
+
+  // editNotice(id: string, data) {
+  //   this.currentUser = localStorage.getItem('currentUser');
+  //   this.currentId = JSON.parse(this.currentUser )[0]._id;
+  //
+  //   this.currentNotice.editNotice(id, data)
+  //     .subscribe(result => {
+  //       this.notesHtml = result;
+  //     }, error => {
+  //       this.notesHtml = error;
+  //       console.log('deleteNotice: ', error);
+  //     });
+  // }
+
 
 }

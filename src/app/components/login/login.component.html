@@ -4,15 +4,19 @@
         (ngSubmit)="onSubmit(ff.form.valid && this.loginForm)"
         #ff = "ngForm">
     <div class="form__row">
-      <label>username</label>
-      <input type="text" formControlName="username">
+      <label>
+        <span class="form-username">username</span>
+        <input type="text" formControlName="username">
+      </label>
       <div class="form-errors" *ngIf="!!f.username.invalid">
         Поле username введен не правильно
       </div>
     </div>
     <div class="form__row">
-      <label>password</label>
-      <input type="password" formControlName="password">
+      <label>
+        <span class="form-password">password</span>
+        <input type="password" formControlName="password">
+      </label>
       <div class="form-errors" *ngIf="!!f.password.invalid">
         Поле password введен не правильно
       </div>

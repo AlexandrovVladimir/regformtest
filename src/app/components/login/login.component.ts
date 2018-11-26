@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   // get сразу возвращает результат, и его не надо возвращать => f.username.errors
-  get f() {return this.loginForm.controls}
+  get f() { return this.loginForm.controls }
   // console.log('get f() this.loginForm.controls', this.loginForm.controls);
 
   onSubmit(form: NgForm) {

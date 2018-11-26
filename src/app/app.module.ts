@@ -8,10 +8,11 @@ import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponentComponent } from './components/home-component/home-component.component';
 import { RegistreComponent } from './components/registre/registre.component';
-
+import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { Router } from '@angular/router';
 import { NoticesComponent } from './components/notices/notices.component';
+import { NoticesViewportComponent } from './components/notices-viewport/notices-viewport.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,12 @@ import { NoticesComponent } from './components/notices/notices.component';
     HomeComponentComponent,
     RegistreComponent,
     NoticesComponent,
+    NoticesViewportComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
