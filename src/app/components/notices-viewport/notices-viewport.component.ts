@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { NoticesService } from "../../services/notices.service";
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators }  from '@angular/forms';
 
@@ -8,13 +8,13 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
   styleUrls: ['./notices-viewport.component.styl']
 })
 export class NoticesViewportComponent implements OnInit {
-  notesHtml: string;
   currentUser: string;
   currentId: string;
-  noticesForm: FormGroup;
   submitted = false;
   noteEditStatus = false;
   selectedIndex: null;
+  onDeleteStatus = '';
+  onDeleteNotice = new EventEmitter<any>();
 
   @Input() noticesItem;
 
@@ -24,12 +24,14 @@ export class NoticesViewportComponent implements OnInit {
   ngOnInit() {
     this.currentUser = localStorage.getItem('currentUser');
     this.currentId = JSON.parse(this.currentUser )[0]._id;
-
-    console.log('input', this.noticesItem);
   }
 
-  toggleEdit(){
+  toggleEdit() {
     this.noteEditStatus = !this.noteEditStatus;
+  }
+
+  deleteNotice() {
+    this.onDeleteStatus = 'Заметка удалена';
   }
 
 }

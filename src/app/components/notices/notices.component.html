@@ -1,3 +1,22 @@
 <div class="notices">
-  <app-notices-viewport *ngFor='let item of notesHtml' [noticesItem]="item"></app-notices-viewport>
+  <!--<app-add-notice></app-add-notice>-->
+  <div class="notices-add">
+    <form class="notices-add-form"
+      (ngSubmit)="onSubmit(noticesAddForm.form)"
+      #noticesAddForm = ngForm>
+      <label class="notices-add__label">
+        <span class="notices-add__title">Title</span>
+        <input type="text" name="title" class="notices-add__input" ngModel>
+      </label>
+      <label class="notices-add__label">
+        <span class="notices-add__description">Description</span>
+        <textarea name="description" class="notices-add__textarea" ngModel></textarea>
+      </label>
+      <input type="submit" class="notices-add-submit" value="Add notice">
+    </form>
+  </div>
+  <app-notices-viewport
+    *ngFor='let item of notesHtml'
+    [noticesItem]="item">
+  </app-notices-viewport>
 </div>

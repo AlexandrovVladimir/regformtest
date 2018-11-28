@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
-import { Observable, of, throwError } from "rxjs";
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = "http://localhost:3000/api";
+const apiUrl = 'http://localhost:3000/api';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class NoticesService {
 
 
 
-  constructor(private http: HttpClient){ }
+  constructor(private http: HttpClient) { }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -31,10 +31,10 @@ export class NoticesService {
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
-  };
+  }
 
   private extractData(res: Response) {
-    let body = res;
+    const body = res;
     return body || { };
   }
 
@@ -52,12 +52,17 @@ export class NoticesService {
     }));
   }
 
+  addNewNotice(id, data): Observable<any> {
+    console.log(data);
+    data.userId = id;
+    return this.http.post(`${this.configUrl}/${id}`, data, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   deleteNotice(id: string): Observable<any> {
     const url = `${apiUrl}/notices/${id}`;
     return this.http.delete(url, httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
   editNotice(id: string, data): Observable<any> {
