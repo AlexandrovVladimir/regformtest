@@ -53,7 +53,7 @@ export class NoticesService {
   }
 
   addNewNotice(id, data): Observable<any> {
-    console.log(data);
+    console.log('notice.service.ts', data);
     data.userId = id;
     return this.http.post(`${this.configUrl}/${id}`, data, httpOptions)
       .pipe(catchError(this.handleError));

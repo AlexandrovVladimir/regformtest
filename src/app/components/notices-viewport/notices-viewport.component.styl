@@ -97,7 +97,12 @@
   }
 }
 .notices-viewport {
+  border-left: 2px solid #8b8b8b
   position: relative
+  transition: all 0.2s ease-in-out
+  &:hover {
+    border-left: 2px solid transparent
+  }
   .notices-edit {
     display: none
   }

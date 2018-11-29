@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { Router } from '@angular/router';
 import { NoticesComponent } from './components/notices/notices.component';
 import { NoticesViewportComponent } from './components/notices-viewport/notices-viewport.component';
-import { AddNoticeComponent } from './components/add-notice/add-notice.component';
+import { AddNoticeComponent } from './components/notice-add/add-notice.component';
 
 @NgModule({
   declarations: [

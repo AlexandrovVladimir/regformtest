@@ -1,8 +1,6 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NoticesService } from '../../services/notices.service';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-notices',
@@ -13,11 +11,8 @@ export class NoticesComponent implements OnInit {
   notesHtml: string;
   currentUser: string;
   currentId: string;
-  // noticesForm: FormGroup;
   submitted = false;
-  // noteEditStatus = false;
-
-  noticeStatus = false;
+  arrayDisplay = [];
 
   constructor(private currentNotice: NoticesService) { }
 
@@ -27,35 +22,22 @@ export class NoticesComponent implements OnInit {
     this.getNotices();
   }
 
-
   getNotices() {
     this.currentNotice.getCurrentNotice(JSON.parse(this.currentUser)[0]._id)
       .subscribe(result => {
         this.notesHtml = result;
-
-        console.log('result', this.notesHtml);
+        console.log(result);
         return this.notesHtml;
       }, error => {
         console.log('getCurrentNotice: ', error);
       });
   }
 
-  onSubmit(noticesAddForm: NgForm) {
-    this.currentUser = localStorage.getItem('currentUser');
-    this.currentId = JSON.parse(this.currentUser )[0]._id;
-    this.noticeStatus = true;
-    this.submitted = true;
-
-    this.currentNotice.addNewNotice(this.currentId, noticesAddForm.value)
-      .subscribe(result => {
-        console.log('#noticesAddForm', result);
-      }, error => {
-        console.log(error);
-      });
+  updateNoticesList() {
+    this.arrayDisplay.push(this.getNotices());
   }
 
   deleteNotice(id: string) {
-    console.log(this.notesHtml);
     // this.currentUser = localStorage.getItem('currentUser');
     // console.log(this.currentUser);
     // this.currentId = JSON.parse(this.currentUser )[0]._id;

@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      //указываем поля и валидаторы к ним
+      // указываем поля и валидаторы к ним
       username: ['vova', Validators.compose([Validators.required, Validators.minLength(3)])], password: ['123', Validators.required]
     })
   }
@@ -43,9 +43,9 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    let values = form.value;
+    const values = form.value;
 
-    this.loginService.login(values.username,values.password)
+    this.loginService.login(values.username, values.password)
       .subscribe(
         result => {
           console.log('loginService data', result);
@@ -57,10 +57,10 @@ export class LoginComponent implements OnInit {
         });
   }
   sendLogin(username: string) {
-    localStorage.setItem("currentUser", username);
+    localStorage.setItem('currentUser', username);
   }
   getLogin() {
-    return localStorage.getItem("currentUser");
+    return localStorage.getItem('currentUser');
   }
   isLoggednIn() {
     return this.getLogin() !== null;
